@@ -2,16 +2,17 @@
 	"name": "wangyj",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
+	"main": "./dist/src/main.js",
+	"type": "module",
 	"scripts": {
-		"dev": "npx tsx watch ./src/hy.ts",
+		"dev": "npx tsc && npm link",
+		"unl": "npm unlink wangyj --global",
+		"test": "npx tsx test.ts",
 		"build": "npx tsc",
-		"prod": "node ./dist/src/hy.js",
-		"postinstall": "node -e \"try{require('./dist/src/postinstall.js')}catch(e){}\"",
-		"postversion": "node -e \"try{require('./dist/src/postinstall.js')}catch(e){}\""
+		"postinstall": "node -e \"try{require('./dist/src/main.js')}catch(e){}\""
 	},
 	"bin": {
-		"hy": "./dist/src/hy.js"
+		"jhy": "./dist/src/hy.js"
 	},
 	"keywords": [],
 	"author": "",
@@ -22,6 +23,7 @@
 		"typescript": "^5.0.4"
 	},
 	"dependencies": {
+		"chalk": "^5.2.0",
 		"commander": "^10.0.1"
 	}
 }
