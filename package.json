@@ -14,7 +14,7 @@
 		"jhy": "./dist/src/hy.js"
 	},
 	"repository": {
-		"url": "",
+		"url": "https://github.com/wangyjhh/wangyj.git",
 		"type": "git"
 	},
 	"keywords": [
