@@ -8,6 +8,8 @@ import registries from "../registries.json"
 import { getOrigin, setOrigin, getHostOrigin } from "./utils/originController.js"
 import { formatOutput } from "./utils/formatOutput"
 
+const defaultList = ["npm", "yarn", "tencent", "cnpm", "taobao", "npmMirror"]
+
 const program = new Command()
 
 program.name("jhy").description("npm镜像源操作命令")
@@ -29,7 +31,7 @@ program
 		const keys = Object.keys(registries)
 		const registriesList: { name: string; registry: string }[] = []
 		keys.forEach((k) => {
-			registriesList.push({ name: k, registry: Reflect.get(registries as object, k).registry })
+			registriesList.push({ name: k, registry: Reflect.get(registries, k).registry })
 		})
 		console.table(registriesList)
 	})
@@ -47,7 +49,7 @@ program
 				choices: Object.keys(registries),
 			},
 		])
-		const origin = Reflect.get(registries as object, select).registry
+		const origin = Reflect.get(registries, select).registry
 		const setResult = setOrigin(origin)
 		if (setResult.res) {
 			formatOutput("镜像源切换", "成功", "success")
@@ -94,14 +96,77 @@ program
 		const value = {
 			registry: registry.trim(),
 		}
-		Reflect.set(registries as object, name, value)
+		Reflect.set(registries, name, value)
 
 		try {
 			fs.writeFileSync(path.join(__dirname, "../registries.json"), JSON.stringify(registries, null, 4))
-			formatOutput("添加镜像源", "成功", "success")
+			formatOutput("镜像源添加", "成功", "success")
 		} catch (error) {
-			formatOutput("添加镜像源", "失败", "error")
+			formatOutput("镜像源添加", "失败", "error")
 			formatOutput("错误信息", `${error}`, "error")
+		}
+	})
+
+// 编辑自定义镜像源
+program
+	.command("edit")
+	.description("编辑自定义镜像源")
+	.action(async () => {
+		const keys = Object.keys(registries)
+		if (keys.length === defaultList.length) {
+			formatOutput("提示信息", "当前无自定义镜像源", "warning")
+			return
+		} else {
+			const customList = keys.filter((key) => !defaultList.includes(key))
+			const { name, newname, newregistry } = await inquirer.prompt([
+				{
+					type: "list",
+					name: "name",
+					message: "请选择要修改的名称",
+					choices: customList,
+				},
+				{
+					type: "input",
+					name: "newname",
+					message: "请输入新名称 (不填视为不修改)",
+					validate(valid) {
+						if (keys.includes(valid)) {
+							return `镜像源名称${valid}已存在`
+						}
+
+						return true
+					},
+				},
+				{
+					type: "input",
+					name: "newregistry",
+					message: "请输入新地址 (不填视为不修改)",
+					validate(valid) {
+						if (keys.includes(valid)) {
+							return `镜像源名称${valid}已存在`
+						}
+						return true
+					},
+				},
+			])
+
+			if (newname == "" && newregistry !== "") {
+				Reflect.set(registries, name, { registry: newregistry })
+			} else if (newname !== "" && newregistry == "") {
+				Reflect.set(registries, newname, Reflect.get(registries, name))
+				Reflect.deleteProperty(registries, name)
+			} else if (newname !== "" && newregistry !== "") {
+				Reflect.set(registries, newname, { registry: newregistry })
+				Reflect.deleteProperty(registries, name)
+			}
+
+			try {
+				fs.writeFileSync(path.join(__dirname, "../registries.json"), JSON.stringify(registries, null, 4))
+				formatOutput("镜像源修改", "成功", "success")
+			} catch (error) {
+				formatOutput("镜像源修改", "失败", "error")
+				formatOutput("错误信息", `${error}`, "error")
+			}
 		}
 	})
 
