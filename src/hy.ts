@@ -219,27 +219,21 @@ program
 	})
 
 // 测试镜像源地址速度
-// program
-// 	.command("ping")
-// 	.description("测试镜像地址速度")
-// 	.action(() => {
-// 		inquirer
-// 			.prompt([
-// 				{
-// 					type: "list",
-// 					name: "sel",
-// 					message: "请选择镜像",
-// 					choices: Object.keys(registries),
-// 				},
-// 			])
-// 			.then((result) => {
-// 				const url = registries[result.sel].ping.trim()
-
-// 				ping(url)
-// 					.then((time) => console.log(chalk.blue(`响应时长: ${time}ms`)))
-// 					.catch(() => console.log(chalk.red("GG", "timeout")))
-// 			})
-// 	})
+program
+	.command("ping")
+	.description("测试镜像地址速度")
+	.action(async () => {
+		const keys = Object.keys(registries)
+		keys.forEach(async (k) => {
+			const url = getHostOrigin(Reflect.get(registries, k).registry)
+			try {
+				const time = await ping(url!)
+				formatOutput("镜像源测速", `镜像源${k} 响应时间 ${time}ms`, "success")
+			} catch (error) {
+				formatOutput("镜像源测速", `镜像源${k} 无法访问`, "error")
+			}
+		})
+	})
 
 program.version(pkg.version, "-V,--version", "输出版本号")
 

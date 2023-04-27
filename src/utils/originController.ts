@@ -15,5 +15,6 @@ export const setOrigin = (origin: string) => {
 
 export const getHostOrigin = (url: string) => {
 	const arr = url.split("")
-	return arr[arr.length - 1] == "/" ? arr.pop() && arr.join("") : arr.join("")
+	const host = arr[arr.length - 1] == "/" ? arr.pop() && arr.join("") : arr.join("").trim()
+	return host
 }
