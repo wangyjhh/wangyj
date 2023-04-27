@@ -10,6 +10,9 @@ dependencies:
   inquirer:
     specifier: ^8.0.0
     version: 8.0.0
+  node-http-ping:
+    specifier: ^0.3.1
+    version: 0.3.1
 
 devDependencies:
   '@types/inquirer':
@@ -282,6 +285,10 @@ packages:
       color-convert: 2.0.1
     dev: false
 
+  /bluebird@2.11.0:
+    resolution: {integrity: sha512-UfFSr22dmHPQqPP9XWHRhq+gWnHCYguQGkXQlbyPtW5qTnhFWA8/iXg765tH0cAjy7l/zPJ1aBTO0g5XgA7kvQ==}
+    dev: false
+
   /buffer-from@1.1.2:
     resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}
     dev: true
@@ -440,6 +447,12 @@ packages:
 
   /mute-stream@0.0.8:
     resolution: {integrity: sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==}
+    dev: false
+
+  /node-http-ping@0.3.1:
+    resolution: {integrity: sha512-4q295gTtUXhFYp3CRMsmUWAXwHoB0oKEz3czmO9ZueWDcTcS3sX4I8L5zvdiXRrZpCMhb/TBaY9I27Gi7/Pa1Q==}
+    dependencies:
+      bluebird: 2.11.0
     dev: false
 
   /onetime@5.1.2:

@@ -3,6 +3,7 @@ import fs from "node:fs"
 import path from "node:path"
 import { Command } from "commander"
 import inquirer from "inquirer"
+import ping from "node-http-ping"
 import pkg from "../package.json"
 import registries from "../registries.json"
 import { getOrigin, setOrigin, getHostOrigin } from "./utils/originController.js"
@@ -44,6 +45,7 @@ program
 		const { select } = await inquirer.prompt([
 			{
 				type: "list",
+				loop: false,
 				name: "select",
 				message: "请选择镜像源",
 				choices: Object.keys(registries),
@@ -121,6 +123,7 @@ program
 			const { name, newname, newregistry } = await inquirer.prompt([
 				{
 					type: "list",
+					loop: false,
 					name: "name",
 					message: "请选择要修改的名称",
 					choices: customList,
@@ -169,6 +172,74 @@ program
 			}
 		}
 	})
+
+//	删除自定义镜像源
+program
+	.command("remove")
+	.description("删除自定义镜像源")
+	.action(async () => {
+		const keys = Object.keys(registries)
+		if (keys.length === defaultList.length) {
+			formatOutput("提示信息", "当前无自定义镜像源", "warning")
+			return
+		} else {
+			const customList = keys.filter((key) => !defaultList.includes(key))
+			const { select, confirm } = await inquirer.prompt([
+				{
+					type: "list",
+					loop: false,
+					name: "select",
+					message: "请选择自定义镜像源",
+					choices: customList,
+				},
+				{
+					type: "confirm",
+					name: "confirm",
+					message: "是否删除自定义镜像源",
+					default: false,
+				},
+			])
+
+			if (!confirm) {
+				formatOutput("镜像源删除", "取消", "warning")
+				return
+			}
+
+			Reflect.deleteProperty(registries, select)
+
+			try {
+				fs.writeFileSync(path.join(__dirname, "../registries.json"), JSON.stringify(registries, null, 4))
+
+				formatOutput("镜像源删除", "成功", "success")
+			} catch (error) {
+				formatOutput("镜像源删除", "失败", "error")
+				formatOutput("错误信息", `${error}`, "error")
+			}
+		}
+	})
+
+// 测试镜像源地址速度
+// program
+// 	.command("ping")
+// 	.description("测试镜像地址速度")
+// 	.action(() => {
+// 		inquirer
+// 			.prompt([
+// 				{
+// 					type: "list",
+// 					name: "sel",
+// 					message: "请选择镜像",
+// 					choices: Object.keys(registries),
+// 				},
+// 			])
+// 			.then((result) => {
+// 				const url = registries[result.sel].ping.trim()
+
+// 				ping(url)
+// 					.then((time) => console.log(chalk.blue(`响应时长: ${time}ms`)))
+// 					.catch(() => console.log(chalk.red("GG", "timeout")))
+// 			})
+// 	})
 
 program.version(pkg.version, "-V,--version", "输出版本号")
 
