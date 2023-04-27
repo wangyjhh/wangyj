@@ -18,7 +18,7 @@ program.name("jhy").description("npm镜像源操作命令")
 // 查看当前镜像源命令
 program
 	.command("now")
-	.description("查看当前正在使用的镜像源")
+	.description("查看当前镜像源")
 	.action(() => {
 		const res = getOrigin()
 		formatOutput("当前镜像源", res, "success")
@@ -27,7 +27,7 @@ program
 // 查看默认镜像源列表
 program
 	.command("ls")
-	.description("默认镜像源列表")
+	.description("查看镜像源列表")
 	.action(() => {
 		const keys = Object.keys(registries)
 		const registriesList: { name: string; registry: string }[] = []

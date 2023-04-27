@@ -1,7 +1,7 @@
 {
 	"name": "wangyj",
-	"version": "1.0.0",
-	"description": "",
+	"version": "0.0.1",
+	"description": "wangyj 个人常用命令库",
 	"main": "./dist/src/main.js",
 	"scripts": {
 		"dev": "npx tsc && npm link",
@@ -13,9 +13,16 @@
 	"bin": {
 		"jhy": "./dist/src/hy.js"
 	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
+	"repository": {
+		"url": "",
+		"type": "git"
+	},
+	"keywords": [
+		"nrm",
+		"mmp"
+	],
+	"author": "wangyj",
+	"license": "MIT",
 	"devDependencies": {
 		"@types/inquirer": "^9.0.3",
 		"@types/node": "^18.16.0",
