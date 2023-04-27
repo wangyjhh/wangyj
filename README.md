@@ -1,3 +1,4 @@
+# wangyj 个人常用命令库
 ```html
 
       ___           ___           ___           ___                     ___    
@@ -13,7 +14,6 @@
      \__\/         \__\/         \__\/         \__\/                           
 
 ```
-# wangyj 个人常用命令库
 
 ## 安装 Install
 ```bash
@@ -51,4 +51,4 @@ Commands:
 ```
 ## 声明 Note
 本库的npm镜像源切换命令的实现参考b站小满的[mmp](https://github.com/message163/mmp)库，
-更多内容请登录 bilibili 关注[`小满zs`](https://space.bilibili.com/99210573)
+更多内容请登录 bilibili 关注[小满zs](https://space.bilibili.com/99210573)
