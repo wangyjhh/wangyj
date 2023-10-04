@@ -1,14 +1,13 @@
 {
 	"name": "wangyj",
-	"version": "0.0.1",
+	"version": "0.0.8",
 	"description": "wangyj 个人常用命令库",
 	"main": "./dist/src/main.js",
 	"scripts": {
-		"dev": "npx tsc && npm link",
+		"dev": "tsc && npm link",
 		"unl": "npm unlink wangyj --global",
-		"test": "npx tsx test.ts",
-		"build": "npx tsc",
-		"postinstall": "node -e \"try{require('./dist/src/main.js')}catch(e){}\""
+		"test": "tsx test.ts",
+		"build": "tsc && tsc-alias"
 	},
 	"bin": {
 		"jhy": "./dist/src/hy.js"
@@ -28,14 +27,15 @@
 	"license": "MIT",
 	"devDependencies": {
 		"@types/inquirer": "^9.0.3",
-		"@types/node": "^18.16.0",
-		"tsx": "^3.12.6",
-		"typescript": "^5.0.4"
+		"@types/node": "^18.18.3",
+		"tsc-alias": "^1.8.8",
+		"tsx": "^3.13.0",
+		"typescript": "^5.2.2"
 	},
 	"dependencies": {
 		"chalk": "^4.1.2",
 		"commander": "^10.0.1",
-		"inquirer": "^8.0.0",
+		"inquirer": "^8.2.6",
 		"node-http-ping": "^0.3.1"
 	}
 }
