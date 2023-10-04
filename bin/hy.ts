@@ -4,12 +4,13 @@ import path from "node:path"
 import { Command } from "commander"
 import inquirer from "inquirer"
 import ping from "node-http-ping"
-import pkg from "../package.json"
-import registries from "../registries.json"
-import { getOrigin, setOrigin, getHostOrigin } from "./utils/originController.js"
-import { formatOutput } from "./utils/formatOutput"
+import pkg from "@/package.json"
+import registries from "@/registries.json"
+import { getOrigin, setOrigin, getHostOrigin } from "@/utils/originController"
+import { formatOutput } from "@/utils/formatOutput"
+import { printVersion } from "@/utils/printVersion"
 
-const defaultList = ["npm", "yarn", "tencent", "cnpm", "taobao", "npmMirror"]
+const defaultList = ["npm", "yarn", "cnpm", "taobao"]
 
 const program = new Command()
 
@@ -235,6 +236,6 @@ program
 		})
 	})
 
-program.version(pkg.version, "-V,--version", "输出版本号")
+program.version(printVersion(pkg.version), "-V, --version", "输出版本号")
 
 program.parse(process.argv)

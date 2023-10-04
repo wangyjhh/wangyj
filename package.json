@@ -2,15 +2,14 @@
 	"name": "wangyj",
 	"version": "0.0.8",
 	"description": "wangyj 个人常用命令库",
-	"main": "./dist/src/main.js",
+	"bin": {
+		"jhy": "./dist/bin/hy.js"
+	},
 	"scripts": {
-		"dev": "tsc && npm link",
+		"dev": "pnpm build && npm link",
 		"unl": "npm unlink wangyj --global",
 		"test": "tsx test.ts",
 		"build": "tsc && tsc-alias"
-	},
-	"bin": {
-		"jhy": "./dist/src/hy.js"
 	},
 	"repository": {
 		"url": "https://github.com/wangyjhh/wangyj.git",
