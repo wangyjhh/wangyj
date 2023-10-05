@@ -3,7 +3,7 @@
 	"version": "0.0.8",
 	"description": "wangyj 个人常用命令库",
 	"bin": {
-		"jhy": "./dist/bin/jhy/index.js"
+		"wss": "./dist/bin/wss/index.js"
 	},
 	"scripts": {
 		"dev": "pnpm build && npm link",

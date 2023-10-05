@@ -1,9 +1,9 @@
 import inquirer from "inquirer"
-import registries from "registries.json"
+import registries from "wss/registries.json"
 import { setOrigin } from "utils/originController"
 import { formatOutput } from "utils/formatOutput"
 
-export const jhyUse = async () => {
+export const wssUse = async () => {
 	const { select } = await inquirer.prompt([
 		{
 			type: "list",

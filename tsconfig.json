@@ -9,7 +9,8 @@
 		"baseUrl": "./",
 		"paths": {
 			"utils/*": ["utils/*"],
-			"command/*": ["bin/jhy/command/*"]
+			"wss/*": ["bin/wss/*"],
+			"wdt/*": ["bin/wdt/*"]
 		},
 		"forceConsistentCasingInFileNames": true,
 		"esModuleInterop": true,

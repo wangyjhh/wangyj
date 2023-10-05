@@ -1,10 +1,10 @@
 import fs from "node:fs"
 import path from "node:path"
 import inquirer from "inquirer"
-import registries from "registries.json"
+import registries from "wss/registries.json"
 import { formatOutput } from "utils/formatOutput"
 
-export const jhyAdd = async () => {
+export const wssAdd = async () => {
 	const { name, registry } = await inquirer.prompt([
 		{
 			type: "input",
@@ -40,7 +40,7 @@ export const jhyAdd = async () => {
 	Reflect.set(registries, name, value)
 
 	try {
-		fs.writeFileSync(path.join(__dirname, "../../../registries.json"), JSON.stringify(registries, null, 4))
+		fs.writeFileSync(path.join(__dirname, "../registries.json"), JSON.stringify(registries, null, 4))
 		formatOutput("镜像源添加", "成功", "success")
 	} catch (error) {
 		formatOutput("镜像源添加", "失败", "error")

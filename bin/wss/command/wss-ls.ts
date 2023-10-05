@@ -1,6 +1,6 @@
-import registries from "registries.json"
+import registries from "wss/registries.json"
 
-export const jhyList = () => {
+export const wssList = () => {
 	const keys = Object.keys(registries)
 	const registriesList: { name: string; registry: string }[] = []
 	keys.forEach((k) => {

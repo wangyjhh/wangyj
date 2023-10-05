@@ -1,9 +1,9 @@
 import ping from "node-http-ping"
-import registries from "registries.json"
+import registries from "wss/registries.json"
 import { getHostOrigin } from "utils/originController"
 import { formatOutput } from "utils/formatOutput"
 
-export const jhyPing = async () => {
+export const wssPing = async () => {
 	const keys = Object.keys(registries)
 	keys.forEach(async (k) => {
 		const url = getHostOrigin(Reflect.get(registries, k).registry)

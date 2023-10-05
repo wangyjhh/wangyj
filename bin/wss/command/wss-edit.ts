@@ -1,10 +1,10 @@
 import fs from "node:fs"
 import path from "node:path"
 import inquirer from "inquirer"
-import registries from "registries.json"
+import registries from "wss/registries.json"
 import { formatOutput } from "utils/formatOutput"
 
-export const jhyEdit = async () => {
+export const wssEdit = async () => {
 	const defaultList = ["npm", "yarn", "cnpm", "taobao"]
 	const keys = Object.keys(registries)
 	if (keys.length === defaultList.length) {
@@ -56,7 +56,7 @@ export const jhyEdit = async () => {
 		}
 
 		try {
-			fs.writeFileSync(path.join(__dirname, "../../../registries.json"), JSON.stringify(registries, null, 4))
+			fs.writeFileSync(path.join(__dirname, "../registries.json"), JSON.stringify(registries, null, 4))
 			formatOutput("镜像源修改", "成功", "success")
 		} catch (error) {
 			formatOutput("镜像源修改", "失败", "error")
