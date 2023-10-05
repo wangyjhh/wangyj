@@ -3,12 +3,13 @@
 	"version": "0.0.8",
 	"description": "wangyj 个人常用命令库",
 	"bin": {
-		"wss": "./dist/bin/wss/index.js"
+		"wss": "./dist/bin/wss/index.js",
+		"wdt": "./dist/bin/wdt/index.js"
 	},
 	"scripts": {
 		"dev": "pnpm build && npm link",
 		"unl": "npm unlink wangyj --global",
-		"test": "tsx test.ts",
+		"test": "tsx test/test.ts",
 		"build": "tsc  && tsc-alias && tsx script/copy-files.ts"
 	},
 	"repository": {
@@ -34,7 +35,9 @@
 	"dependencies": {
 		"chalk": "^4.1.2",
 		"commander": "^10.0.1",
+		"download-git-repo": "^3.0.2",
 		"inquirer": "^8.2.6",
-		"node-http-ping": "^0.3.1"
+		"node-http-ping": "^0.3.1",
+		"ora": "^5.4.1"
 	}
 }

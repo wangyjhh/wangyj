@@ -1,0 +1,5 @@
+export { wdtAdd } from "wdt/command/wdt-add"
+export { wdtEdit } from "wdt/command/wdt-edit"
+export { wdtRemove } from "wdt/command/wdt-remove"
+export { wdtList } from "wdt/command/wdt-ls"
+export { wdtInit } from "wdt/command/wdt-init"

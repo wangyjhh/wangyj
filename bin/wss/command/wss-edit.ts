@@ -36,12 +36,6 @@ export const wssEdit = async () => {
 				type: "input",
 				name: "newregistry",
 				message: "请输入新地址 (不填视为不修改)",
-				validate(valid) {
-					if (keys.includes(valid)) {
-						return `镜像源名称${valid}已存在`
-					}
-					return true
-				},
 			},
 		])
 

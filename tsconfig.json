@@ -2,6 +2,7 @@
 	"compilerOptions": {
 		"target": "ESNext",
 		"module": "CommonJS",
+		"lib": ["ES6"],
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
 		"rootDir": "./",
@@ -17,7 +18,7 @@
 		"strict": true,
 		"skipLibCheck": true
 	},
-	"include": ["bin/**/*.ts", "utils/**/*.ts", "./package.json", "./registries.json"],
+	"include": ["bin/**/*.ts", "utils/**/*.ts", "./package.json", "index.d.ts"],
 	"exclude": ["test/**/*.ts", "node_modules"],
 	"copyFiles": {
 		"include": ["README.md", "LICENSE"]

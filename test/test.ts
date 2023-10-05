@@ -1,4 +1,6 @@
 import chalk from "chalk"
+import ora from "ora"
+import download from "download-git-repo"
 
 console.log(chalk.red.bgBlue.bold(" test "))
 console.log(chalk.red.bold("test"))
@@ -23,3 +25,17 @@ inquirer.prompt([
 		},
 	},
 ])
+
+const spinner = ora("Downloading...")
+spinner.start()
+
+download("direct:https://gitee.com/DVN/ts-template.git", "projectTest", { clone: true }, (err: any) => {
+	if (err) {
+		spinner.fail()
+		// formatOutput("项目生成", "失败", "error")
+		return
+	}
+	spinner.succeed()
+	console.log("\n To get started")
+	console.log(`\n    cd projectTest \n`)
+})
