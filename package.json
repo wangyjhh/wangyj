@@ -3,13 +3,13 @@
 	"version": "0.0.8",
 	"description": "wangyj 个人常用命令库",
 	"bin": {
-		"jhy": "./dist/bin/hy.js"
+		"jhy": "./dist/bin/jhy/index.js"
 	},
 	"scripts": {
 		"dev": "pnpm build && npm link",
 		"unl": "npm unlink wangyj --global",
 		"test": "tsx test.ts",
-		"build": "tsc && tsc-alias"
+		"build": "tsc  && tsc-alias && tsx script/copy-files.ts"
 	},
 	"repository": {
 		"url": "https://github.com/wangyjhh/wangyj.git",

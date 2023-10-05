@@ -8,12 +8,17 @@
 		"outDir": "./dist",
 		"baseUrl": "./",
 		"paths": {
-			"@/*": ["./*"]
+			"utils/*": ["utils/*"],
+			"command/*": ["bin/jhy/command/*"]
 		},
 		"forceConsistentCasingInFileNames": true,
 		"esModuleInterop": true,
 		"strict": true,
 		"skipLibCheck": true
 	},
-	"include": ["./bin/*", "./package.json", "./registries.ts", "./README.md", "./.gitignore", "./utils/*"]
+	"include": ["bin/**/*.ts", "utils/**/*.ts", "./package.json", "./registries.json"],
+	"exclude": ["test/**/*.ts", "node_modules"],
+	"copyFiles": {
+		"include": ["README.md", "LICENSE"]
+	}
 }
