@@ -1,6 +1,6 @@
 {
 	"name": "wangyj",
-	"version": "0.0.8",
+	"version": "0.1.0",
 	"description": "wangyj 个人常用命令库",
 	"bin": {
 		"wss": "./dist/bin/wss/index.js",

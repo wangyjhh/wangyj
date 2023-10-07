@@ -24,14 +24,15 @@ npm i wangyj -g
 pnpm add wangyj -g
 ```
 ## 命令 Command
-| 命令名称 | 作用      |
-| -------- | --------- |
-| jhy      | npm源操作 |
+| 命令名称 | 作用         |
+| -------- | ------------ |
+| wss      | npm源操作    |
+| wdt      | 项目模板操作 |
 
 
 ## 用法 Usage
 ```html
-Usage: jhy [options] [command]
+Usage: wss [options] [command]
 
 npm镜像源操作命令
 
@@ -47,6 +48,23 @@ Commands:
   edit            编辑自定义镜像源
   remove          删除自定义镜像源
   ping            测试镜像地址速度
+  help [command]  display help for command
+```
+```html
+Usage: wdt [options] [command]
+
+项目脚手架命令
+
+Options:
+  -V, --version   输出版本号
+  -h, --help      display help for command
+
+Commands:
+  ls              查看项目模板列表
+  add             添加项目模板
+  edit            编辑项目模板
+  remove          删除项目模板
+  init            从模板生成新项目
   help [command]  display help for command
 ```
 ## 声明 Note
